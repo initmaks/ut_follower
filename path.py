@@ -19,7 +19,7 @@ class Path2D:
         cx,cy,ctheta = current
         x,y,theta = target
         dist_reached = lin_dist((cx,cy),(x,y)) < dist_tol
-        rot_reached = rot_dist(ctheta,theta) < rot_tol
+        rot_reached = angle_diff(ctheta,theta) < rot_tol
         return dist_reached, rot_reached
 
     def try_step(self,current_tf):

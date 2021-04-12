@@ -6,7 +6,7 @@ import pybullet as p
 from sim import PBsim
 from path import Path2D,PathViz
 from robot import Robot,RobotViz
-from utils import ranged_rotation_angle,rot_dist
+from utils import ranged_rotation_angle,angle_diff
 
 trajectory = [
     [0.0,0.0,0.0],
