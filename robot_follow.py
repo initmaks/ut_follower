@@ -28,20 +28,20 @@ MAX_DELTA_T = 0.25 # translation
 MAX_DELTA_R = 0.4 # rotation
 
 trajectory = [
+    [0.0,0.0,None],
+    [2.0,0.0,None],
+    [2.0,2.0,None],
+    [0.0,2.0,None],
+    [0.0,0.0,None], # start
+    [2.0,0.0,None],
+    [2.0,2.0,None],
+    [0.0,2.0,None],
+    [0.0,0.0,None], # start
+    [2.0,0.0,None],
+    [2.0,2.0,None],
+    [0.0,2.0,None],
+    [0.0,0.0,None],
     [0.0,0.0,0.0],
-    [2.0,0.0,0.0],
-    [2.0,2.0,0.0],
-    [0.0,2.0,0.0],
-    [0.0,0.0,0.0], # start
-    [2.0,0.0,0.0],
-    [2.0,2.0,0.0],
-    [0.0,2.0,0.0],
-    [0.0,0.0,0.0], # start
-    [2.0,0.0,0.0],
-    [2.0,2.0,0.0],
-    [0.0,2.0,0.0],
-    [0.0,0.0,0.0],
-    [0.01,0.0,0.0],
 ]
 
 trajectory = np.array(trajectory)
@@ -57,9 +57,10 @@ def real2pathtf(tf):
     return cx,cy,ctheta
 
 def get_control_cmd(current_tf,goal_tf):
-    gx,gy,_ = goal_tf
+    gx,gy,gtheta = goal_tf
     cx,cy,ctheta = current_tf
-    gtheta = np.arctan2(gy-cy,gx-cx)
+    if gtheta is None:
+        gtheta = np.arctan2(gy-cy,gx-cx)
     dtheta = angle_diff(gtheta,ctheta) # facing towards the next point
     if np.abs(dtheta) > 0.1:
         return 0.0,0.0,dtheta
@@ -168,7 +169,7 @@ if __name__=="__main__":
             #     )
             # TODO add visualization that target is reached
         # time.sleep(1/30)
-        time.sleep(1/10)
+        # time.sleep(1/10)
     
     # TRAJECTORY is OVER - rotate robot
     # for i in range(20):
