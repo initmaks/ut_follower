@@ -22,7 +22,7 @@ class Path2D:
         if theta is None:
             return dist_reached
         else:
-            rot_reached = angle_diff(ctheta,theta) < rot_tol
+            rot_reached = np.abs(angle_diff(ctheta,theta)) < rot_tol
             return dist_reached and rot_reached
 
     def try_step(self,current_tf):
