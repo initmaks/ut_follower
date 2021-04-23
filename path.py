@@ -15,7 +15,7 @@ class Path2D:
         x,y,theta = self.original_path[self.current_point_idx]
         return x,y,theta
     
-    def is_reached(self,current,target,dist_tol=0.05,rot_tol=0.05): # TODO check + tune tollerances!
+    def is_reached(self,current,target,dist_tol=0.1,rot_tol=0.1): # TODO check + tune tollerances!
         cx,cy,ctheta = current
         x,y,theta = target
         dist_reached = lin_dist((cx,cy),(x,y)) < dist_tol
